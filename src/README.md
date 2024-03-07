@@ -1,7 +1,11 @@
-***communication folder***
+## * communication folder
 * barcode_data_handler.py
 
-\
-***database folder***
+<br>
+
+## * database folder
 * create.sql
 * insert_db.py
+
+##### 1. create local database 
+  `mysql -u username -p database_name < create.sql`
