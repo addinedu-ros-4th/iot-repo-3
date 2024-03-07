@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1694</width>
+    <height>902</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QGroupBox" name="group1">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>60</y>
+     <width>501</width>
+     <height>811</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="pushStat">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>270</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : white; border : 2px solid black; color : black;}
+QWidget:hover{background-color : rgb(200, 200, 200);}
+QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
+    </property>
+    <property name="text">
+     <string>주문 통계</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushStart">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>370</y>
+      <width>141</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : white; border : 2px solid green; color : green;}
+QWidget:hover{background-color: rgb(151, 206, 132);}
+QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
+    </property>
+    <property name="text">
+     <string>가동</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushSearch">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>270</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : white; border : 2px solid black; color : black;}
+QWidget:hover{background-color : rgb(200, 200, 200);}
+QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
+    </property>
+    <property name="text">
+     <string>물품 찾기</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushStop">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>480</y>
+      <width>341</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : red; border : 2px solid red; color : white;}
+QWidget:hover{background-color: rgb(240, 141, 141);}
+QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
+    </property>
+    <property name="text">
+     <string>긴급 정지</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOn">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : green;</string>
+    </property>
+    <property name="text">
+     <string>가동중</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOff">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : red;</string>
+    </property>
+    <property name="text">
+     <string>대기중</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="group2">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>60</y>
+     <width>501</width>
+     <height>811</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="pushSearch2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>290</y>
+      <width>311</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius :35px; border : 1px solid black; background-color : white; }
+QWidget:hover{background-color : rgb(200, 200, 200);}
+QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
+    </property>
+    <property name="text">
+     <string>SEARCH</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>410</y>
+      <width>461</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>hub</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>category</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>state</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>product_No.</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>checktime</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QComboBox" name="cbHub">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>180</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbState">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>180</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDateTimeEdit" name="editStart">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>60</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy-MM-dd hh:mm:ss</string>
+    </property>
+   </widget>
+   <widget class="QDateTimeEdit" name="editEnd">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>110</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy-MM-dd hh:mm:ss</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>60</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>110</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>End</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushStop2">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>610</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : red; border : 2px solid red; color : white;}
+QWidget:hover{background-color: rgb(240, 141, 141);}
+QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
+    </property>
+    <property name="text">
+     <string>긴급 정지</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushStart2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>610</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : white; border : 2px solid green; color : green;}
+QWidget:hover{background-color: rgb(151, 206, 132);}
+QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
+    </property>
+    <property name="text">
+     <string>가동</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushMain">
+    <property name="geometry">
+     <rect>
+      <x>158</x>
+      <y>710</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>메인화면</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOff2">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : red;</string>
+    </property>
+    <property name="text">
+     <string>대기중</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOn2">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : green;</string>
+    </property>
+    <property name="text">
+     <string>가동중</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>180</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>허브 : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label4">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>180</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>상태 : </string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbCategory">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>230</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbProductnum">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>230</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label5">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>230</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>분류 : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label6">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>230</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>상품번호 : </string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="group3">
+   <property name="geometry">
+    <rect>
+     <x>1120</x>
+     <y>60</y>
+     <width>501</width>
+     <height>811</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="pushStart3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>600</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : white; border : 2px solid green; color : green;}
+QWidget:hover{background-color: rgb(151, 206, 132);}
+QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
+    </property>
+    <property name="text">
+     <string>가동</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushStop3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>600</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget{border-radius : 15px; background-color : red; border : 2px solid red; color : white;}
+QWidget:hover{background-color: rgb(240, 141, 141);}
+QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
+    </property>
+    <property name="text">
+     <string>긴급 정지</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushMain2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>710</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>메인화면</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbList">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>520</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Graphlabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>461</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOn3">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : green;</string>
+    </property>
+    <property name="text">
+     <string>가동중</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelOff3">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>20</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color : red;</string>
+    </property>
+    <property name="text">
+     <string>대기중</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label8">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>520</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>통계 기준 : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label7">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>520</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>처리일 : </string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbDay">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>520</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
