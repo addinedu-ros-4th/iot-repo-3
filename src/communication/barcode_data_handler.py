@@ -1,15 +1,18 @@
 import paho.mqtt.client as mqtt
-from database.insert_db import insert_database
 import json
+import sys
+from database.insert_db import insert_database
+from datetime import datetime
 
-ip_number = '192.168.219.108'           # house
-# ip_number = '192.168.0.85'            # edu
+
+# ip_number = '192.168.219.108'           # house
+ip_number = '192.168.0.85'            # edu
 
 
 # Connecting broker callback
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
-    client.subscribe("arduino1/outTopic")
+    client.subscribe("arduino1/outTopicBar")
 
 
 # Disconnecting broker callback
@@ -27,15 +30,17 @@ def on_message(client, userdata, msg):
 
 # For insert Database, split number
 def split_number(msg):
-    barcode_number = msg.payload.decode('utf-8')
-    print(f"Data : {barcode_number}")
+    barcode = msg.payload.decode('utf-8')
+    print(f"Data : {barcode}")
     
     # barcode full_number slice
-    category = barcode_number[:2]
-    hub_name = barcode_number[2:4]
-    state = barcode_number[4:6]
+    size_category = barcode[:2]
+    hub_name = barcode[2:4]
+    treatment = barcode[4:6]
     
-    insert_database(barcode_number, category, hub_name, state)
+    start_time = datetime.now()
+    
+    insert_database(barcode, size_category, hub_name, treatment, start_time)
 
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
