@@ -1,11 +1,12 @@
 ## * communication folder
 * barcode_data_handler.py
+* serial.communication.py
 
 <br>
 
 ## * database folder
 * create.sql
-* insert_db.py
+* db_control.py
 
 ##### 1. create local database
   `cd /home/addinedu/git_ws/iot-repo-3/src/communication` (sql file location)
