@@ -1,12 +1,15 @@
 import paho.mqtt.client as mqtt
 import json
 import sys
-from database.insert_db import insert_database
+import os
+sys.path.append(os.path.abspath('/home/addinedu/git_ws/iot-repo-3/src/communication/database'))
+from communication.database.db_control import insert_database   # database control module
 from datetime import datetime
+from communication.serial_communication import write_serial_data
 
 
 # ip_number = '192.168.219.108'           # house
-ip_number = '192.168.0.85'            # edu
+ip_number = '192.168.0.85'                # edu
 
 
 # Connecting broker callback
@@ -25,11 +28,12 @@ def on_message(client, userdata, msg):
     topic_name = msg.topic
     print(f"Topic : {topic_name}")
     
-    split_number(msg)
+    # Insert Database
+    split_insert(msg)
 
 
 # For insert Database, split number
-def split_number(msg):
+def split_insert(msg):
     barcode = msg.payload.decode('utf-8')
     print(f"Data : {barcode}")
     
@@ -41,7 +45,10 @@ def split_number(msg):
     start_time = datetime.now()
     
     insert_database(barcode, size_category, hub_name, treatment, start_time)
-
+    
+    # Send to Arduino board2 (serial communication) 'HubInfo'
+    write_serial_data(hub_name)
+    
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 client.on_connect = on_connect           # callback definition setting
