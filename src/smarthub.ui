@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1694</width>
+    <width>1665</width>
     <height>902</height>
    </rect>
   </property>
@@ -16,11 +16,14 @@
   <widget class="QGroupBox" name="group1">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>30</x>
      <y>60</y>
-     <width>501</width>
+     <width>521</width>
      <height>811</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="title">
     <string/>
@@ -29,7 +32,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>270</y>
+      <y>400</y>
       <width>151</width>
       <height>71</height>
      </rect>
@@ -52,7 +55,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>370</y>
+      <y>500</y>
       <width>141</width>
       <height>71</height>
      </rect>
@@ -75,7 +78,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>270</y>
+      <y>400</y>
       <width>151</width>
       <height>71</height>
      </rect>
@@ -98,7 +101,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>480</y>
+      <y>610</y>
       <width>341</width>
       <height>91</height>
      </rect>
@@ -159,13 +162,76 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
      <string>대기중</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>100</y>
+      <width>91</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Vemana2000</family>
+      <pointsize>30</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>가산</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>50</y>
+      <width>211</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../../../resources.qrc">:/icon/Downloads/Screenshot from 2024-03-08 17-46-11.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>160</y>
+      <width>101</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Vemana2000</family>
+      <pointsize>30</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>HUB</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="group2">
    <property name="geometry">
     <rect>
      <x>580</x>
      <y>60</y>
-     <width>501</width>
+     <width>521</width>
      <height>811</height>
     </rect>
    </property>
@@ -175,8 +241,8 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QPushButton" name="pushSearch2">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>290</y>
+      <x>90</x>
+      <y>300</y>
       <width>311</width>
       <height>91</height>
      </rect>
@@ -198,7 +264,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>410</y>
       <width>461</width>
       <height>161</height>
@@ -206,12 +272,12 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
     </property>
     <column>
      <property name="text">
-      <string>hub</string>
+      <string>size</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>category</string>
+      <string>hub</string>
      </property>
     </column>
     <column>
@@ -221,29 +287,34 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
     </column>
     <column>
      <property name="text">
-      <string>product_No.</string>
+      <string>treatment</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>checktime</string>
+      <string>start_time</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>end_time</string>
      </property>
     </column>
    </widget>
-   <widget class="QComboBox" name="cbHub">
+   <widget class="QComboBox" name="cbSize">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>180</y>
       <width>131</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="cbState">
+   <widget class="QComboBox" name="cbHub">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>340</x>
       <y>180</y>
       <width>131</width>
       <height>31</height>
@@ -253,11 +324,18 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QDateTimeEdit" name="editStart">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>60</y>
-      <width>201</width>
+      <x>130</x>
+      <y>90</y>
+      <width>161</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="date">
+     <date>
+      <year>2024</year>
+      <month>3</month>
+      <day>7</day>
+     </date>
     </property>
     <property name="displayFormat">
      <string>yyyy-MM-dd hh:mm:ss</string>
@@ -266,46 +344,44 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QDateTimeEdit" name="editEnd">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>110</y>
-      <width>201</width>
+      <x>340</x>
+      <y>90</y>
+      <width>161</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="dateTime">
+     <datetime>
+      <hour>23</hour>
+      <minute>59</minute>
+      <second>59</second>
+      <year>2024</year>
+      <month>3</month>
+      <day>13</day>
+     </datetime>
+    </property>
+    <property name="date">
+     <date>
+      <year>2024</year>
+      <month>3</month>
+      <day>13</day>
+     </date>
+    </property>
+    <property name="time">
+     <time>
+      <hour>23</hour>
+      <minute>59</minute>
+      <second>59</second>
+     </time>
     </property>
     <property name="displayFormat">
      <string>yyyy-MM-dd hh:mm:ss</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>60</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label2">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>End</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushStop2">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>310</x>
       <y>610</y>
       <width>151</width>
       <height>71</height>
@@ -328,7 +404,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QPushButton" name="pushStart2">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>610</y>
       <width>151</width>
       <height>71</height>
@@ -351,7 +427,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushMain">
     <property name="geometry">
      <rect>
-      <x>158</x>
+      <x>160</x>
       <y>710</y>
       <width>201</width>
       <height>71</height>
@@ -411,7 +487,20 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QLabel" name="label3">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
+      <y>180</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>크기 : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label4">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
       <y>180</y>
       <width>41</width>
       <height>31</height>
@@ -421,33 +510,20 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
      <string>허브 : </string>
     </property>
    </widget>
-   <widget class="QLabel" name="label4">
+   <widget class="QComboBox" name="cbState">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>180</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>상태 : </string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="cbCategory">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
+      <x>110</x>
       <y>230</y>
       <width>131</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="cbProductnum">
+   <widget class="QComboBox" name="cbCategory">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>340</x>
       <y>230</y>
       <width>131</width>
       <height>31</height>
@@ -457,34 +533,70 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QLabel" name="label5">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>230</y>
       <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>분류 : </string>
+     <string>상태 : </string>
     </property>
    </widget>
    <widget class="QLabel" name="label6">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>290</x>
       <y>230</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>취급 :</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbChecktime">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>86</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>90</y>
+      <width>20</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>~</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushReset">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>374</y>
       <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>상품번호 : </string>
+     <string>Reset</string>
     </property>
    </widget>
   </widget>
   <widget class="QGroupBox" name="group3">
    <property name="geometry">
     <rect>
-     <x>1120</x>
+     <x>1130</x>
      <y>60</y>
      <width>501</width>
      <height>811</height>
@@ -666,6 +778,8 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
