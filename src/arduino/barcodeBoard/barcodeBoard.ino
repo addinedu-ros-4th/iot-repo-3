@@ -3,24 +3,34 @@
  * #240307 
  *  - if button is pressed, the barcode module starts scanning.
  *  - esp8266 sends "barcode value" to mqtt server
+ *  
+ * #240308
+ *  - add server signal, 
+ *  
+ * #240311
+ *  - remove button, and 2sec period QR code scan
  */
 #include <ESP8266WiFi.h>
 
 // test
-#define GLED D0
-#define BTN D1
+#define BTN D0
+#define GLED D1
+#define RLED D2
 bool flg_btn = 0;
 
+float lastTime = millis();
+
 // mqtt
-#include <PubSubClient.h>
-// Update these with values suitable for your network.
+#include <PubSubClient.h>// Update these with values suitable for your network.
 const char* ssid = "AIE_509_2.4G";
 const char* password = "addinedu_class1";
-const char* mqtt_server = "broker.mqtt-dashboard.com";
-//const char* mqtt_server = "192.168.0.85";
+//const char* mqtt_server = "broker.mqtt-dashboard.com";
+const char* mqtt_server = "192.168.0.85";
 const int mqttPort = 1883;
-#define outTopic "arduino1/outTopic"
-#define inTopic "inTopic"
+#define outTopicOn "arduino1/outTopicOn"
+#define outTopicBar "arduino1/outTopicBar"
+#define inTopicStart "arduino1/inTopicStart"
+#define inTopicMode "arduino1/inTopicMode"
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -29,9 +39,26 @@ unsigned long lastMsg = 0;
 char msg[MSG_BUFFER_SIZE];
 int value = 0;
 
+//TX
+int sigOperation = 0;
+
+//RX
+//int sigEmergency = 0;
+int flgCallback = 0;
+int sigServerCmd = 0;
+// 0 : suspend
+// 1 : operation
+int sigConvMode = 0;
+// 0 : ready(green led)
+// 1 : move(red led)
+
+bool flgStart = 0;
+
 // barcode
 #include <SoftwareSerial.h>
 SoftwareSerial GM65Serial(14,12);   // MCU(RX,TX) - (SCK,MISO)
+bool flgBarcode = 0;
+
 
 void setup_wifi() {
 
@@ -58,6 +85,7 @@ void setup_wifi() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
+  flgCallback = 1;
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
@@ -66,14 +94,22 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   Serial.println();
 
-  // Switch on the LED if an 1 was received as first character
-  if ((char)payload[0] == '1') {
-    digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
-    // but actually the LED is on; this is because
-    // it is active low on the ESP-01)
-  } else {
-    digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
+  #if 0
+  if (topic == inTopicStart)
+  {
+    //a = (char)payload;
+    sigServerCmd = payload - '0';
   }
+  else if (topic == inTopicMode)
+  {
+    //b = (char)payload;
+    sigConvMode = payload - '0';
+  }
+  else
+  {
+    //
+  }
+  #endif
 
 }
 
@@ -88,9 +124,10 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish(outTopic, "hello world");
+      client.publish(outTopicBar, "hello world");
       // ... and resubscribe
-      client.subscribe(inTopic);
+      client.subscribe(inTopicStart);
+      client.subscribe(inTopicMode);
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -135,43 +172,113 @@ void loop()
   }
   client.loop();
 
-  #if 1
-  int btnState = digitalRead(BTN);
-  //Serial.println(btnState);
-  #endif
+  // ######################################
+  #if 0
+  if (flgCallback == 0)
+  {
+    sigOperation = 1;
+    String buf = String(sigOperation);
+    char bufOp[50];
+    buf.toCharArray(bufOp, 50);
+    Serial.print("Publish message: ");
+    Serial.println(bufOp);
+    client.publish(outTopicOn, bufOp);
 
-  #if 1
+  }
+  else if (flgCallback == 1)
+  {
+    // aleady operating....
+  }
+  else
+  {
+    // error
+  }
+
+
+  if (sigServerCmd == 1) flgStart = 1;
+  else if (sigServerCmd == 0) flgStart = 0;
+  else ; // Serial.print(command error);
+
+
+  if (flgStart == 1)
+  {
+    if (sigConvMode == 0)
+    {
+      // ready mode
+      digitalWrite(GLED, HIGH);
+      digitalWrite(RLED, LOW);
+
+      if ((currentTime - lastTime) > 1000)
+      {
+        flgBarcode = 1;
+        lastTime = currentTime;
+      }
+      else
+      {
+        currentTime = millis();
+        //
+      }
+    
+      if (flgBarcode == 1)
+      {
+        String barcodeValue = BarcodeScan();
+        char buf[50];
+        barcodeValue.toCharArray(buf, 50);
+    
+        Serial.print("Publish message: ");
+        Serial.println(buf);
+        client.publish(outTopicBar, buf);
+        //client.publish(outTopicBar, "XX04LI01");
+    
+        flgBarcode = 0;
+      }
+      else
+      {
+        //
+      }
+      
+    }
+    else if (sigConvMode == 1)
+    {
+      // move mode
+      digitalWrite(GLED, LOW);
+      digitalWrite(RLED, HIGH);
+    }
+    else ; // Serial.print(command error);
+  }
+  else
+  {
+    // suspend
+  }
+
+  #endif
+  // ######################################
+
+
+  // BTN Press mode
+  #if 0
+  int btnState = digitalRead(BTN);
+
   if (btnState == HIGH)
   {
-    //Serial.println(btnState);
     digitalWrite(GLED, HIGH);
-    
+
     if (flg_btn == 0)
     {
-      // 바코드 리드명령
       String barcodeValue = BarcodeScan();
+      
       char buf[50];
       barcodeValue.toCharArray(buf, 50);
-      //Serial.println(buf[2]);
-      //Serial.println(barcodeValue);
-      //Serial.println(buf);
-
-      // send to mqtt server
-      //snprintf (msg, MSG_BUFFER_SIZE, "barcode : %s", barcodeValue);
-      //Serial.print("Publish message: ");
-      //Serial.println(msg);
-      //client.publish(outTopic, msg);
-
 
       Serial.print("Publish message: ");
       Serial.println(buf);
-      client.publish(outTopic, buf);
-      
+      client.publish(outTopicBar, buf);
+
       flg_btn = 1;
     }
     else
     {
-      // 
+      
     }
   }
   else
@@ -179,7 +286,38 @@ void loop()
     flg_btn = 0;
     digitalWrite(GLED, LOW);
   }
-  #endif  
+  #endif
+
+
+  // 1sec period mode
+  #if 1
+  if ((millis() - lastTime) > 2000)
+  {
+    String barcodeValue = BarcodeScan();    
+    char buf[50];
+    barcodeValue.toCharArray(buf, 50);
+
+
+    if (int(buf[0]) == 0)
+    {
+      //Serial.println("Null");
+    }
+    else
+    {
+      Serial.print("Publish message: ");
+      Serial.println(buf);
+      client.publish(outTopicBar, buf);
+    }
+
+    lastTime = millis();
+  }
+  else
+  {
+    //
+  }
+  #endif
+
+  
   
 }
 
