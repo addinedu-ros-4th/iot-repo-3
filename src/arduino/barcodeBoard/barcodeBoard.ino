@@ -5,10 +5,10 @@
  *  - esp8266 sends "barcode value" to mqtt server
  *  
  * #240308
- *  - add server signal, 
+ *  - add server signal
  *  
- * #240311
- *  - remove button, and 2sec period QR code scan
+ * #240312
+ *  - 1st test complete
  */
 #include <ESP8266WiFi.h>
 
@@ -255,7 +255,7 @@ void loop()
   // ######################################
 
 
-  // BTN Press mode/
+  // BTN Press mode
   #if 0
   int btnState = digitalRead(BTN);
 
