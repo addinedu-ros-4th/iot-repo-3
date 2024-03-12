@@ -9,6 +9,9 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from datetime import datetime
 import seaborn as sns
+import koreanize_matplotlib
+# import resources_rc
+# 터미널에서 pyrcc5 -o resources_rc.py <resources.qrc경로> 실행 요구
 
 from_class = uic.loadUiType("smarthub.ui")[0]
 
@@ -16,10 +19,11 @@ class WindowClass(QMainWindow, UIManager):
     def __init__(self):
         super().__init__()
         # self.setup_ui()
-
         self.ui_manager = UIManager()
         self.motor_manager = MotorManager()
-        self.db_manager = DBManager(self.ui_manager)
+        self.db_manager = DBManager()
+
+        self.test = self.db_manager.df.copy()
 
         self.pushStart.clicked.connect(self.moveconveyor)
         self.pushStart2.clicked.connect(self.moveconveyor)
@@ -32,38 +36,33 @@ class WindowClass(QMainWindow, UIManager):
         self.pushReset.clicked.connect(self.resettable)
         self.cbDay.currentIndexChanged.connect(self.searchStat)
         self.cbList.currentIndexChanged.connect(self.searchStat)
-        
+
+    # 모터의 상태(가동중/대기중)에 따라 겹쳐있는 라벨 toggle하여 show    
+    def setConveyorLabels(self, is_running):
+        on_labels = [self.labelOn, self.labelOn2, self.labelOn3]
+        off_labels = [self.labelOff, self.labelOff2, self.labelOff3]
+
+        for label in on_labels:
+            label.setVisible(is_running)
+
+        for label in off_labels:
+            label.setVisible(not is_running)
+
+    # 긴급 정지했던 모터 재가동
     def moveconveyor(self):
-        self.labelOn.show()
-        self.labelOn2.show()
-        self.labelOn3.show()
-        self.labelOff.hide()
-        self.labelOff2.hide()
-        self.labelOff3.hide()
+        self.setConveyorLabels(True)
         self.motor_manager.moveconveyor()
 
+    # 모터 긴급 정지
     def stopconveyor(self):
-        self.labelOn.hide()
-        self.labelOn2.hide()
-        self.labelOn3.hide()
-        self.labelOff.show()
-        self.labelOff2.show()
-        self.labelOff3.show()
+        self.setConveyorLabels(False)
         self.motor_manager.stopconveyor()
 
-    def check_motor(self):
-        self.motor_manager.check_motor()
+    # 현재 모터 동작여부 확인해서 UI상에 가동중/대기중 표시
+    # def check_motor(self):
+    #     self.motor_manager.check_motor()
 
-    # def searchproduct(self):
-    #     self.searchproduct()
-    #     print(self.db_manager.df)
-
-    def resettable(self):
-        self.db_manager.resettable()
-
-    def searchStat(self):
-        self.db_manager.searchStat()
-
+    # 쿼리를 이용해서 날짜 범위, 콤보박스 선택에 따라 QTableWidget에 데이터 출력
     def searchproduct(self):
         start = self.editStart.dateTime().toString("yyyy-MM-dd hh:mm:ss")
         end = self.editEnd.dateTime().toString("yyyy-MM-dd hh:mm:ss")
@@ -133,10 +132,12 @@ class WindowClass(QMainWindow, UIManager):
             for b in range(len(a)):
                 self.tableWidget.setItem(row, b, QTableWidgetItem(str(a[b])))
 
+    # 물품찾기 데이터 테이블 내용 지우기
     def resettable(self):
         self.tableWidget.clearContents()
         self.tableWidget.setRowCount(0)
 
+    # 주문 통계 데이터 처리일, 통계 기준 설정
     def searchStat(self):
 
         self.Day = self.cbDay.currentText()
@@ -151,18 +152,19 @@ class WindowClass(QMainWindow, UIManager):
             self.standard = "treatment"
 
         if self.Day == "All":
-            pass
+            self.test = self.db_manager.df.copy()
         else:
-            self.db_manager.df = self.db_manager.df[self.db_manager.df['end_time'].dt.date == datetime.strptime(self.Day, "%Y-%m-%d").date()]
-            print("debuging~~")
-        self.plot_graph(self.db_manager.df, self.standard)
+            self.test = self.db_manager.df[self.db_manager.df['end_time'].dt.date == datetime.strptime(self.Day, "%Y-%m-%d").date()].copy()
+        
+        self.plot_graph(self.test, self.standard)
 
-
+    # pixmap에 그래프 그려주기
     def plot_graph(self, df, column):
     
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         self.pixmap = QPixmap()
+
         self.Graphlabel.setPixmap(self.pixmap)
         
         if self.standard == "-":
@@ -173,12 +175,13 @@ class WindowClass(QMainWindow, UIManager):
             
             self.canvas.draw_idle()
 
-            pixmap = QPixmap(self.canvas.size())
-            self.canvas.render(pixmap)
-            pixmap = pixmap.scaled(self.Graphlabel.size(), aspectRatioMode=0)
-            
-            self.Graphlabel.setPixmap(pixmap)
+            self.pixmap = QPixmap(self.canvas.size())
+            self.canvas.render(self.pixmap)
+            self.pixmap = self.pixmap.scaled(self.Graphlabel.size(), aspectRatioMode=0)
+
+            self.Graphlabel.setPixmap(self.pixmap)
     
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     my_windows = WindowClass()

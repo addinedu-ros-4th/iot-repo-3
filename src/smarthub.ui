@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="group1">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>60</y>
-     <width>521</width>
+     <width>541</width>
      <height>811</height>
     </rect>
    </property>
@@ -31,7 +31,7 @@
    <widget class="QPushButton" name="pushStat">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>310</x>
       <y>400</y>
       <width>151</width>
       <height>71</height>
@@ -54,7 +54,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QPushButton" name="pushStart">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>500</y>
       <width>141</width>
       <height>71</height>
@@ -77,7 +77,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushSearch">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>90</x>
       <y>400</y>
       <width>151</width>
       <height>71</height>
@@ -100,7 +100,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QPushButton" name="pushStop">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>100</x>
       <y>610</y>
       <width>341</width>
       <height>91</height>
@@ -123,7 +123,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="labelOn">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>450</x>
       <y>20</y>
       <width>51</width>
       <height>20</height>
@@ -144,7 +144,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="labelOff">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>450</x>
       <y>20</y>
       <width>51</width>
       <height>20</height>
@@ -165,10 +165,10 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>100</y>
+      <x>360</x>
+      <y>130</y>
       <width>91</width>
-      <height>121</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -180,6 +180,9 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 18, 106);</string>
+    </property>
     <property name="text">
      <string>가산</string>
     </property>
@@ -187,7 +190,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>50</y>
       <width>211</width>
       <height>281</height>
@@ -209,10 +212,10 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>160</y>
+      <x>360</x>
+      <y>180</y>
       <width>101</width>
-      <height>121</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
@@ -224,6 +227,9 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 18, 106);</string>
+    </property>
     <property name="text">
      <string>HUB</string>
     </property>
@@ -232,9 +238,9 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
   <widget class="QGroupBox" name="group2">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>570</x>
      <y>60</y>
-     <width>521</width>
+     <width>541</width>
      <height>811</height>
     </rect>
    </property>
@@ -244,7 +250,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QPushButton" name="pushSearch2">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>100</x>
       <y>300</y>
       <width>311</width>
       <height>91</height>
@@ -269,7 +275,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
      <rect>
       <x>30</x>
       <y>410</y>
-      <width>461</width>
+      <width>481</width>
       <height>161</height>
      </rect>
     </property>
@@ -317,7 +323,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QComboBox" name="cbHub">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>350</x>
       <y>180</y>
       <width>131</width>
       <height>31</height>
@@ -327,7 +333,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QDateTimeEdit" name="editStart">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>140</x>
       <y>90</y>
       <width>161</width>
       <height>31</height>
@@ -347,7 +353,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QDateTimeEdit" name="editEnd">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>350</x>
       <y>90</y>
       <width>161</width>
       <height>31</height>
@@ -384,7 +390,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QPushButton" name="pushStop2">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>320</x>
       <y>610</y>
       <width>151</width>
       <height>71</height>
@@ -407,7 +413,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QPushButton" name="pushStart2">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>80</x>
       <y>610</y>
       <width>151</width>
       <height>71</height>
@@ -430,7 +436,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushMain">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>180</x>
       <y>710</y>
       <width>201</width>
       <height>71</height>
@@ -503,7 +509,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QLabel" name="label4">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>300</x>
       <y>180</y>
       <width>41</width>
       <height>31</height>
@@ -526,7 +532,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QComboBox" name="cbCategory">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>350</x>
       <y>230</y>
       <width>131</width>
       <height>31</height>
@@ -549,7 +555,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QLabel" name="label6">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>300</x>
       <y>230</y>
       <width>41</width>
       <height>31</height>
@@ -562,7 +568,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QComboBox" name="cbChecktime">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>90</y>
       <width>86</width>
       <height>25</height>
@@ -572,7 +578,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>320</x>
       <y>90</y>
       <width>20</width>
       <height>31</height>
@@ -585,7 +591,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushReset">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>430</x>
       <y>374</y>
       <width>71</width>
       <height>31</height>
@@ -599,9 +605,9 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
   <widget class="QGroupBox" name="group3">
    <property name="geometry">
     <rect>
-     <x>1130</x>
+     <x>1120</x>
      <y>60</y>
-     <width>501</width>
+     <width>521</width>
      <height>811</height>
     </rect>
    </property>
@@ -611,7 +617,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushStart3">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>50</x>
       <y>600</y>
       <width>151</width>
       <height>71</height>
@@ -634,7 +640,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushStop3">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>320</x>
       <y>600</y>
       <width>151</width>
       <height>71</height>
@@ -657,7 +663,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QPushButton" name="pushMain2">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>160</x>
       <y>710</y>
       <width>201</width>
       <height>71</height>
@@ -675,7 +681,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QComboBox" name="cbList">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>360</x>
       <y>520</y>
       <width>111</width>
       <height>31</height>
@@ -686,9 +692,9 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
-      <width>461</width>
-      <height>441</height>
+      <y>60</y>
+      <width>481</width>
+      <height>431</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -746,7 +752,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="label8">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>270</x>
       <y>520</y>
       <width>71</width>
       <height>31</height>

@@ -270,11 +270,11 @@ class WindowClass(QMainWindow, from_class) :
             
             self.canvas.draw_idle()
 
-            pixmap = QPixmap(self.canvas.size())
-            self.canvas.render(pixmap)
-            pixmap = pixmap.scaled(self.Graphlabel.size(), aspectRatioMode=0)
+            self.pixmap = QPixmap(self.canvas.size())
+            self.canvas.render(self.pixmap)
+            self.pixmap = self.pixmap.scaled(self.Graphlabel.size(), aspectRatioMode=0)
             
-            self.Graphlabel.setPixmap(pixmap)
+            self.Graphlabel.setPixmap(self.pixmap)
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
