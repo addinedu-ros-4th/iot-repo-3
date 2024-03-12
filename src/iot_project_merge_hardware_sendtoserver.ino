@@ -5,16 +5,24 @@ Servo servo1;
 Servo servo2;
 Servo servo3;
 
+int ENA = 9; // PWM 제어 핀
+int IN1 = 10; // 모터 회전 방향 제어 핀 1
+int IN2 = 11; // 모터 회전 방향 제어 핀 2
+
+int ENA_2 = 5; // PWM 제어 핀
+int IN1_2 = 6; // 모터 회전 방향 제어 핀 1
+int IN2_2 = 7; // 모터 회전 방향 제어 핀 2
+
 const int totalservoNum = 3;
 const int totaldistSensorNum = 4;
 
 const int servoPin[totalservoNum] = {2,3,4};
-const int servoangleWait[totalservoNum] = {0,180,0};
-const int servoangleBlock[totalservoNum] = {55,135,55};
-const int servoangleThrow[totalservoNum] = {0,180,0};
+const int servoangleWait[totalservoNum] = {170,0,170};
+const int servoangleBlock[totalservoNum] = {90,90,90};
+const int servoangleThrow[totalservoNum] = {170,0,170};
 
 const int distSensorPin[totaldistSensorNum] = {A0,A1,A2,A3};
-const int sensorDistanceLimit[totaldistSensorNum] = {600,600,600,600};
+const int sensorDistanceLimit[totaldistSensorNum] = {300,300,300,300};
 int distSensorStatus[totaldistSensorNum] = {0, 0, 0, 0};
 
 
@@ -25,6 +33,8 @@ const int servotimerlimit = 300;
 
 int statusconveyor =0;//0: 구동하지 않음 1: 구동 중 
 int statusworking =0;
+int isunkownhub =0;
+int unknowntimer =0;
 //bosun merge
 //
 
@@ -40,6 +50,14 @@ void setup() {
 
   servo3.attach(servoPin[2]);
   servo3.write(servoangleWait[2]);
+
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+
+  pinMode(ENA_2, OUTPUT);
+  pinMode(IN1_2, OUTPUT);
+  pinMode(IN2_2, OUTPUT);
 
 }
 
@@ -74,7 +92,7 @@ void conveyorRun()
     }
     else
     {
-      return;
+      //
     }
   }
   else
@@ -82,16 +100,60 @@ void conveyorRun()
     if(statusconveyor == 1) //conveyor가 돌고 있는지 확인 할 수 있는 코드
     {
       //돌고 있으면 
-      return;
       
     }
     else
     {
       statusconveyor =1;
       //Serial.println("conveyor 구동");
-      
     }
   }
+
+  if(statusconveyor == 1)
+  {
+    analogWrite(ENA, 50); // 속도 조절을 위한 PWM 신호 (0-255 사이의 값)
+    digitalWrite(IN1, HIGH); // 모터 회전 방향 설정
+    digitalWrite(IN2, LOW);
+    analogWrite(ENA_2, 50); // 속도 조절을 위한 PWM 신호 (0-255 사이의 값)
+    digitalWrite(IN1_2, HIGH); // 모터 회전 방향 설정
+    digitalWrite(IN2_2, LOW);
+
+  }
+  else
+  {
+    if (isunkownhub == 1 )
+    {
+      if(unknowntimer == 1000)
+      {
+        unknowntimer = 0;
+        isunkownhub =0;
+      }
+      else
+      {
+        analogWrite(ENA, 50); // 속도 조절을 위한 PWM 신호 (0-255 사이의 값)
+        digitalWrite(IN1, HIGH); // 모터 회전 방향 설정
+        digitalWrite(IN2, LOW);
+        analogWrite(ENA_2, 50); // 속도 조절을 위한 PWM 신호 (0-255 사이의 값)
+        digitalWrite(IN1_2, HIGH); // 모터 회전 방향 설정
+        digitalWrite(IN2_2, LOW);
+        unknowntimer++;
+      }
+    }
+    else
+    {
+      analogWrite(ENA, 0); // 속도 조절을 위한 PWM 신호 (0-255 사이의 값)
+      digitalWrite(IN1, LOW); // 모터 회전 방향 설정
+      digitalWrite(IN2, LOW);
+      analogWrite(ENA_2, 0); // 속도 조절을 위한 PWM 신호 (0-255 사이의 값)
+      digitalWrite(IN1_2, LOW); // 모터 회전 방향 설정
+      digitalWrite(IN2_2, LOW);
+    }
+
+    
+  }
+
+  
+
 }
 
 void receiveSerial()
@@ -102,7 +164,7 @@ void receiveSerial()
   {
     // Serial.println("---");
     String inputStr = Serial.readStringUntil('\n');
-    // Serial.println(inputStr);
+    //Serial.println(inputStr);
     tmpReceiveString = inputStr;
 
   }
@@ -143,6 +205,7 @@ void servoCheck()
       {
         sendToServer();
         numHub =0;
+        isunkownhub = 1;
       }
     }
   }
@@ -264,6 +327,6 @@ void loop() {
   receiveSerial();
   servoCheck();
   delay(1);
+  
 
-   
 }
