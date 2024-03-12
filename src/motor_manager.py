@@ -20,8 +20,3 @@ class MotorManager :
         self.serial_port.open(QSerialPort.WriteOnly)
         self.serial_port.write(b'S')  
         self.serial_port.close()
-
-    # def check_motor(self):
-    #     self.serial_port.open(QSerialPort.WriteOnly)
-    #     self.serial_port.write(b'F')
-    #     self.serial_port.close()

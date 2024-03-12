@@ -181,7 +181,6 @@ class WindowClass(QMainWindow, UIManager):
 
             self.Graphlabel.setPixmap(self.pixmap)
     
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     my_windows = WindowClass()

@@ -15,8 +15,6 @@ class DBManager:
 
         self.df = self.initialize_data()
         
-
-
     # products table 불러와서 dataframe화
     def initialize_data(self):
         self.cur.execute("select * from products")

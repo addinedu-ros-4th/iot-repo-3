@@ -23,7 +23,6 @@ class UIManager(QDialog) :
         self.cbDay.addItems(["All","2024-03-07", "2024-03-08", "2024-03-11", "2024-03-12", "2024-03-13"])
         self.cbList.addItems(["-" ,"크기", "허브", "상태", "취급"])
         
-
         self.labelOn.hide()
         self.labelOn2.hide()
         self.labelOn3.hide()
