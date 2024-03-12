@@ -32,7 +32,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>400</y>
+      <y>560</y>
       <width>151</width>
       <height>71</height>
      </rect>
@@ -55,8 +55,8 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>500</y>
-      <width>141</width>
+      <y>670</y>
+      <width>151</width>
       <height>71</height>
      </rect>
     </property>
@@ -78,7 +78,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>400</y>
+      <y>560</y>
       <width>151</width>
       <height>71</height>
      </rect>
@@ -100,10 +100,10 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QPushButton" name="pushStop">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>610</y>
-      <width>341</width>
-      <height>91</height>
+      <x>200</x>
+      <y>670</y>
+      <width>151</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -190,7 +190,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>60</x>
       <y>50</y>
       <width>211</width>
       <height>281</height>
@@ -232,6 +232,195 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
     </property>
     <property name="text">
      <string>HUB</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelhub1">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>380</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius : 30px; background-color : white;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="text">
+     <string>Hub 1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelhub11">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>470</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelhub2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>380</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius : 30px; background-color : white; </string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="text">
+     <string>Hub 2</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelhub3">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>380</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius : 30px; background-color : white; </string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="text">
+     <string>Hub 3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelhub22">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>470</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelhub33">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>470</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>296</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>분류 중 : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>296</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -390,7 +579,7 @@ QWidget:pressed{background-color:rgb(50, 50, 50);}</string>
    <widget class="QPushButton" name="pushStop2">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>210</x>
       <y>610</y>
       <width>151</width>
       <height>71</height>
@@ -413,7 +602,7 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
    <widget class="QPushButton" name="pushStart2">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>210</x>
       <y>610</y>
       <width>151</width>
       <height>71</height>
@@ -617,7 +806,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushStart3">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>190</x>
       <y>600</y>
       <width>151</width>
       <height>71</height>
@@ -640,7 +829,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
    <widget class="QPushButton" name="pushStop3">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>190</x>
       <y>600</y>
       <width>151</width>
       <height>71</height>
@@ -692,9 +881,9 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
+      <y>50</y>
       <width>481</width>
-      <height>431</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="styleSheet">

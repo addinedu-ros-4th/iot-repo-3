@@ -2,9 +2,12 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 import sys
 from PyQt5.QtGui import *
 from PyQt5 import uic
+from PyQt5.QtCore import QTimer, Qt
 from ui_manager import UIManager
 from motor_manager import MotorManager
 from db_manager import DBManager
+import pandas as pd
+import numpy as np
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from datetime import datetime
@@ -37,6 +40,11 @@ class WindowClass(QMainWindow, UIManager):
         self.cbDay.currentIndexChanged.connect(self.searchStat)
         self.cbList.currentIndexChanged.connect(self.searchStat)
 
+        # 1초 단위 주기로 timeout signal 발생시켜서 displaybarcode 실행
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.displaybarcode)
+        self.timer.start(1000)
+
     # 모터의 상태(가동중/대기중)에 따라 겹쳐있는 라벨 toggle하여 show    
     def setConveyorLabels(self, is_running):
         on_labels = [self.labelOn, self.labelOn2, self.labelOn3]
@@ -48,19 +56,76 @@ class WindowClass(QMainWindow, UIManager):
         for label in off_labels:
             label.setVisible(not is_running)
 
+    def setStartStopLabels(self, is_running):
+        move_labels = [self.pushStart, self.pushStart2, self.pushStart3]
+        stop_labels = [self.pushStop, self.pushStop2, self.pushStop3]
+
+        for label in move_labels:
+            label.setVisible(is_running)
+
+        for label in stop_labels:
+            label.setVisible(not is_running)
+
     # 긴급 정지했던 모터 재가동
     def moveconveyor(self):
         self.setConveyorLabels(True)
+        self.setStartStopLabels(False)
         self.motor_manager.moveconveyor()
 
     # 모터 긴급 정지
     def stopconveyor(self):
         self.setConveyorLabels(False)
+        self.setStartStopLabels(True)
         self.motor_manager.stopconveyor()
 
     # 현재 모터 동작여부 확인해서 UI상에 가동중/대기중 표시
     # def check_motor(self):
     #     self.motor_manager.check_motor()
+
+    def displaybarcode(self):
+        sql3 = "select barcode, state, hub_name from products"
+        self.db_manager.cur.execute(f"{sql3}")
+
+        barstahub = self.db_manager.cur.fetchall()
+        barstahub = [list(u) for u in barstahub]
+
+        df2 = pd.DataFrame(barstahub, columns=['barcode', 'state', 'hub_name'])
+
+        condition = df2['state']=='00'
+
+        if any(condition):
+            movingbarcode = df2.loc[condition, 'barcode'].values[-1]
+            movinghub = df2.loc[condition, 'hub_name'].values[-1]
+
+            # barcode가 string이 아닐 경우
+            movingbarcode = str(movingbarcode)
+
+            self.label_6.setText(movingbarcode)
+
+            if movinghub == '01':
+                self.labelhub11.setText("분류 중")
+                self.labelhub22.setText("")
+                self.labelhub33.setText("")
+                self.labelhub1.setStyleSheet("background-color:green; color:white; border-style:solid; border-radius:30px; border-width:3px; border-color:green;")
+                self.labelhub2.setStyleSheet("border-radius : 30px; background-color : white;")
+                self.labelhub3.setStyleSheet("border-radius : 30px; background-color : white;")
+            elif movinghub == '02':
+                self.labelhub33.setText("")
+                self.labelhub22.setText("분류 중")
+                self.labelhub11.setText("")
+                self.labelhub1.setStyleSheet("border-radius : 30px; background-color : white;")
+                self.labelhub2.setStyleSheet("background-color:green; color:white; border-style:solid; border-radius:30px; border-width:3px; border-color:green;")
+                self.labelhub3.setStyleSheet("border-radius : 30px; background-color : white;")
+            else:
+                self.labelhub11.setText("")
+                self.labelhub22.setText("")
+                self.labelhub33.setText("분류 중")
+                self.labelhub1.setStyleSheet("border-radius : 30px; background-color : white;")
+                self.labelhub2.setStyleSheet("border-radius : 30px; background-color : white;")
+                self.labelhub3.setStyleSheet("background-color:green; color:white; border-style:solid; border-radius:30px; border-width:3px; border-color:green;")
+        else:   
+            self.label_6.setText('') 
+        
 
     # 쿼리를 이용해서 날짜 범위, 콤보박스 선택에 따라 QTableWidget에 데이터 출력
     def searchproduct(self):
@@ -161,7 +226,7 @@ class WindowClass(QMainWindow, UIManager):
     # pixmap에 그래프 그려주기
     def plot_graph(self, df, column):
     
-        self.figure = Figure()
+        self.figure = Figure(figsize=(6, 4))
         self.canvas = FigureCanvas(self.figure)
         self.pixmap = QPixmap()
 
@@ -170,9 +235,9 @@ class WindowClass(QMainWindow, UIManager):
         if self.standard == "-":
             pass
         else:
-            ax = self.figure.add_subplot(111)
+            ax = self.figure.add_subplot(111) 
             sns.countplot(x=column, data=df, ax=ax, palette = "YlGnBu") 
-            
+
             self.canvas.draw_idle()
 
             self.pixmap = QPixmap(self.canvas.size())
