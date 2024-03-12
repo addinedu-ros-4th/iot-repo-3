@@ -255,7 +255,7 @@ void loop()
   // ######################################
 
 
-  // BTN Press mode
+  // BTN Press mode/
   #if 0
   int btnState = digitalRead(BTN);
 
