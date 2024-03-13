@@ -139,6 +139,8 @@ class WindowClass(QMainWindow, UIManager):
 
     # 쿼리를 이용해서 날짜 범위, 콤보박스 선택에 따라 QTableWidget에 데이터 출력
     def searchproduct(self):
+        self.db_manager.reconnect_cursor()
+        
         start = self.editStart.dateTime().toString("yyyy-MM-dd hh:mm:ss")
         end = self.editEnd.dateTime().toString("yyyy-MM-dd hh:mm:ss")
 
@@ -206,7 +208,8 @@ class WindowClass(QMainWindow, UIManager):
             self.tableWidget.insertRow(row)
             for b in range(len(a)):
                 self.tableWidget.setItem(row, b, QTableWidgetItem(str(a[b])))
-
+        
+        self.db_manager.close_cursor()
     # 물품찾기 데이터 테이블 내용 지우기
     def resettable(self):
         self.tableWidget.clearContents()

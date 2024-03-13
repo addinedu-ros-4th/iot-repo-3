@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1665</width>
+    <width>585</width>
     <height>902</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QGroupBox" name="group1">
    <property name="geometry">
@@ -427,11 +430,14 @@ QWidget:pressed{background-color: rgb(164, 7, 7);}</string>
   <widget class="QGroupBox" name="group2">
    <property name="geometry">
     <rect>
-     <x>570</x>
+     <x>20</x>
      <y>60</y>
      <width>541</width>
      <height>811</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="title">
     <string/>
@@ -763,6 +769,9 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -794,7 +803,7 @@ QWidget:pressed{background-color : rgb(0, 100, 0);}</string>
   <widget class="QGroupBox" name="group3">
    <property name="geometry">
     <rect>
-     <x>1120</x>
+     <x>40</x>
      <y>60</y>
      <width>521</width>
      <height>811</height>
