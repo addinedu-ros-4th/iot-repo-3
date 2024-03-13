@@ -43,7 +43,7 @@ class WindowClass(QMainWindow, UIManager):
         # 1초 단위 주기로 timeout signal 발생시켜서 displaybarcode 실행
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.displaybarcode)
-        self.timer.start(1000)
+        self.timer.start(500)
 
     # 모터의 상태(가동중/대기중)에 따라 겹쳐있는 라벨 toggle하여 show    
     def setConveyorLabels(self, is_running):
@@ -83,6 +83,7 @@ class WindowClass(QMainWindow, UIManager):
     #     self.motor_manager.check_motor()
 
     def displaybarcode(self):
+        self.db_manager.reconnect_cursor()
         sql3 = "select barcode, state, hub_name from products"
         self.db_manager.cur.execute(f"{sql3}")
 
@@ -123,12 +124,23 @@ class WindowClass(QMainWindow, UIManager):
                 self.labelhub1.setStyleSheet("border-radius : 30px; background-color : white;")
                 self.labelhub2.setStyleSheet("border-radius : 30px; background-color : white;")
                 self.labelhub3.setStyleSheet("background-color:green; color:white; border-style:solid; border-radius:30px; border-width:3px; border-color:green;")
-        else:   
+        else:
+            self.labelhub1.setStyleSheet("border-radius : 30px; background-color : white;")
+            self.labelhub2.setStyleSheet("border-radius : 30px; background-color : white;")
+            self.labelhub3.setStyleSheet("border-radius : 30px; background-color : white;")
             self.label_6.setText('') 
-        
+            self.labelhub11.setText('')
+            self.labelhub22.setText('')
+            self.labelhub33.setText('')
+
+
+        self.db_manager.close_cursor()
+
 
     # 쿼리를 이용해서 날짜 범위, 콤보박스 선택에 따라 QTableWidget에 데이터 출력
     def searchproduct(self):
+        self.db_manager.reconnect_cursor()
+        
         start = self.editStart.dateTime().toString("yyyy-MM-dd hh:mm:ss")
         end = self.editEnd.dateTime().toString("yyyy-MM-dd hh:mm:ss")
 
@@ -196,7 +208,8 @@ class WindowClass(QMainWindow, UIManager):
             self.tableWidget.insertRow(row)
             for b in range(len(a)):
                 self.tableWidget.setItem(row, b, QTableWidgetItem(str(a[b])))
-
+        
+        self.db_manager.close_cursor()
     # 물품찾기 데이터 테이블 내용 지우기
     def resettable(self):
         self.tableWidget.clearContents()
