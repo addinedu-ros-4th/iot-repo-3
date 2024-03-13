@@ -1,5 +1,5 @@
 import pymysql
-
+from datetime import datetime
 
 def get_db_connection():
     # setting
@@ -49,5 +49,41 @@ def insert_database(barcode, size_category, hub_name, treatment, start_time):
 
 
 # Find columns
-def get_column_value():
-    pass
+def change_state(barcode):
+    # setting
+    conn = get_db_connection()
+    
+    sql = "SELECT state, end_time FROM products WHERE barcode = %s"
+    cur = conn.cursor()
+    cur.execute(sql, (barcode, ))
+    
+    results = cur.fetchall()
+    
+    if results:
+        # 첫 번째 결과 행만 사용
+        state, end_time = results[0] # data unpacking
+    else:
+        print("해당 바코드에 대한 결과가 없습니다.")
+
+
+    # Data update
+    if state is not None:
+        state = '01'
+        end_time = datetime.now()
+                
+        update_database(cur, barcode, state, end_time)
+                
+        conn.commit()
+        close_db_connection(conn)
+                
+        print(f"{barcode} 분류 완료.")
+        
+        return '#S@STATEUPDATE'
+
+
+def update_database(cur, barcode, state, end_time):
+    sql = "UPDATE products SET state = %s, end_time = %s\
+        WHERE barcode = %s";
+        
+    cur.execute(sql, (state, end_time, barcode))
+    
