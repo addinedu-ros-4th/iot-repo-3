@@ -1,11 +1,19 @@
 ## * communication folder
-* communication.py
-  통합 통신 코드 (mqtt, serial)
-* serial.communication.py
-  serial 통신 모듈화 준비 중
+1. 통신
+* communicatioin.py 
+: 통합 통신 코드 (mqtt, serial)
+<br>
+2. QT
+* main_app.py
+* smarthub.py
+* db_manager.py
+* motor_manager.py
+* resources_rc.py
+* ui_manager.py
+* smarthub.ui
 <br>
 
-## * database folder
+## * communication/database folder
 * create.sql
 * db_control.py
 
