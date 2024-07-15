@@ -8,6 +8,25 @@
 > 
 <br>
 
+
+# 기술 스택 
+
+<br/>
+        
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"> <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=Ubuntu&logoColor=white">   
+</div>
+
+<div align="center">
+   <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">  <img src="https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=MQTT&logoColor=white"> <img src="https://img.shields.io/badge/PyQt-41CD52?style=for-the-badge&logo=Qt&logoColor=white">
+</div>
+
+<div align="center">
+   <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">  <img src="https://img.shields.io/badge/Arduino-00878F?style=for-the-badge&logo=Arduino&logoColor=white">
+</div>
+<br/>
+
+
 ### ⬥ 동작
 1. 상자 QR 코드를 **인식**하면, DB 저장과 동시에 지정 hub로 물류가 **이동**한다.\
    ⬦ 이동 방식 : 컨베이어 벨트가 **동작**하고, 나무판을 붙인 서보모터가 작동하여 물류를 **분류**한다.
