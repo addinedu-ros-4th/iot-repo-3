@@ -20,7 +20,7 @@
 ***⬦ 김보선*** : 컨베이어벨트 제작 및 motor 동작 <br>
 ***⬦ 이정욱*** : QT GUI 구현 <br> 
 ***⬦ 유재상*** : 컨베이어벨트 제작, 바코드 모듈 및 mqtt 통신 보드 제어 <br>
-***⬦ 정다연*** : 컨베이어벨트 동작 코드
+***⬦ 정다연*** : 통신 프로토콜 설계, 물류 분류 동작 코드 구현 <br> 
 
 ---
 ## ⬥ 전체 구성
@@ -34,7 +34,15 @@
 <img src="https://github.com/addinedu-ros-4th/iot-repo-3/assets/102429136/3c074be2-9ecf-42ad-8d42-753726ef7062" width="600" height="400"/>
 
 ## ⬥ System 구조
+<br/>
 <img src="https://github.com/addinedu-ros-4th/iot-repo-3/assets/102429136/f3e8c1e4-a5f1-4508-a44f-e282b5fe32d9" width="600" height="500"/>
+<br/>
+<br/>
+<img src="https://github.com/user-attachments/assets/45e91643-f12e-42db-8fa7-a1debecb50de" width="600" height="500"/>
+<br/>
+<br/>
+
+
 
 #### ⬦ QR코드 구성
 <img src="https://github.com/addinedu-ros-4th/iot-repo-3/assets/102429136/d3614adc-9423-4e7a-a452-7fcea222df84" width="600" height="200"/>
